@@ -4,12 +4,20 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
 
-GPIO.setup(7,GPIO.OUT)
-GPIO.setup(11,GPIO.OUT)
-GPIO.setup(15,GPIO.OUT)
+pin1 = 7
+pin2 = 11
+pin3 = 15
+
+GPIO.setup(pin1,GPIO.OUT)
+GPIO.setup(pin2,GPIO.OUT)
+GPIO.setup(pin3,GPIO.OUT)
 
 input = open('searle_mydayofcarnage.json', 'rb')
 struct = json.load(input)
+input.close()
+
+input = open('searle_mydayofcarnage_conf.json', 'rb')
+conf = json.load(input)
 input.close()
 
 times = {}
@@ -18,37 +26,14 @@ maxim = {}
 for part in struct:
     partCase = part
     part = part.lower()
-    if 'flute' in part:
-        section = 'woodwind'
-    elif 'piccolo' in part:
-        section = 'woodwind'
-    elif 'clarinet' in part:
-        section = 'woodwind'
-    elif 'oboe' in part:
-        section = 'woodwind'
-    elif 'bassoon' in part:
-        section = 'woodwind'
-    elif 'trumpet' in part:
-        section = 'brass'
-    elif 'trombone' in part:
-        section = 'brass'
-    elif 'tuba' in part:
-        section = 'brass'
-    elif 'trumpet' in part:
-        section = 'brass'
-    elif 'violin' in part:
-        section = 'strings'
-    elif 'chello' in part:
-        section = 'strings'
-    elif 'violo' in part:
-        section = 'strings'
-    elif 'bass' in part:
-        section = 'strings'
-    elif 'horn' in part:
-        section = 'brass'
-    else:
+    #i know this is wrong
+    section = ''
+    for key in conf['sections']:
+        if key in part:
+            section = conf['sections'][key]
+    if (section == ''):
         section = 'generic'
-        #print part
+        print part
     
     if not section in maxim:
         maxim[section] = 0
@@ -69,24 +54,24 @@ for part in struct:
             if times[pos][section] > maxim[section]:
                 maxim[section] = times[pos][section]
 
-tempo = 80
-wait = float((1/float(tempo))*60.0)
+tempo = conf['tempo']
+wait = float((1/float(int(tempo)))*60.0)
 
-print "tempo ",tempo,"; seconds gap ",wait
+print "tempo ",tempo," pause of ",wait
 
 #test digi leds
-GPIO.output(7,True)
-GPIO.output(11,True)
-GPIO.output(15,True)
+GPIO.output(pin1,True)
+GPIO.output(pin2,True)
+GPIO.output(pin3,True)
 time.sleep(3)
-GPIO.output(7,False)
-GPIO.output(11,False)
-GPIO.output(15,False)
+GPIO.output(pin1,False)
+GPIO.output(pin2,False)
+GPIO.output(pin3,False)
 
 #pwn stuff
-r = GPIO.PWM(7,50)
-g = GPIO.PWM(11,50)
-b = GPIO.PWM(15,50)
+r = GPIO.PWM(pin1,50)
+g = GPIO.PWM(pin2,50)
+b = GPIO.PWM(pin3,50)
 r.start(0)
 g.start(0)
 b.start(0)
@@ -105,8 +90,10 @@ b.ChangeDutyCycle(0)
 
 time.sleep(3)
 
+leng = max(times.keys(),key=int)
+
 #loop
-for i in xrange(0,max(times.keys(),key=int)):
+for i in xrange(0,leng):
     if i in times:
         if 'strings' in times[i]:
             duty = float(times[i]['strings'])/float(maxim['strings'])

@@ -1,0 +1,18 @@
+{
+    "tempo": 84,
+    "sections": {
+        "flute": "woodwind",
+        "piccolo": "woodwind",
+        "clarinet": "woodwind",
+        "oboe": "woodwind",
+        "bassoon": "woodwind",
+        "trumpet": "brass",
+        "trombone": "brass",
+        "tuba": "brass",
+        "violin": "strings",
+        "chello": "strings",
+        "violo": "strings",
+        "bass": "strings",
+        "horn": "brass"
+    }
+}
