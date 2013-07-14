@@ -1,5 +1,13 @@
 import json
 import time
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+#GPIO.setwarnings(False)
+
+GPIO.setup(7,GPIO.OUT)
+GPIO.setup(11,GPIO.OUT)
+GPIO.setup(15,GPIO.OUT)
 
 input = open('searle_mydayofcarnage.json', 'rb')
 struct = json.load(input)
@@ -68,16 +76,27 @@ for i in xrange(0,max(times.keys(),key=int)):
     if i in times:
         if 'strings' in times[i]:
             print times[i]['strings'], maxim['strings'], float(times[i]['strings'])/float(maxim['strings'])
+            GPIO.output(7,True)
         else:
             print 0
+            GPIO.output(7,False)
         if 'woodwind' in times[i]:
             print times[i]['woodwind'], maxim['woodwind'], float(times[i]['woodwind'])/float(maxim['woodwind'])
+            GPIO.output(11,True)
         else:
             print 0
+            GPIO.output(11,False)
         if 'brass' in times[i]:
             print times[i]['brass'], maxim['brass'], float(times[i]['brass'])/float(maxim['brass'])
+            GPIO.output(15,True)
         else:
             print 0
+            GPIO.output(15,False)
     wait = float((1/float(tempo))*60.0)
     time.sleep(wait)
     print "...",wait
+
+GPIO.output(7,False)
+GPIO.output(11,False)
+GPIO.output(15,False)
+
