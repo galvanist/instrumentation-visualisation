@@ -1,4 +1,5 @@
 import json
+import time
 
 input = open('searle_mydayofcarnage.json', 'rb')
 struct = json.load(input)
@@ -40,7 +41,7 @@ for part in struct:
         section = 'brass'
     else:
         section = 'generic'
-        print part
+        #print part
     
     if not section in maxim:
         maxim[section] = 0
@@ -61,6 +62,22 @@ for part in struct:
             if times[pos][section] > maxim[section]:
                 maxim[section] = times[pos][section]
 
-print maxim
+tempo = 80
 
-print max(times.keys(),key=int)
+for i in xrange(0,max(times.keys(),key=int)):
+    if i in times:
+        if 'strings' in times[i]:
+            print times[i]['strings'], maxim['strings'], float(times[i]['strings'])/float(maxim['strings'])
+        else:
+            print 0
+        if 'woodwind' in times[i]:
+            print times[i]['woodwind'], maxim['woodwind'], float(times[i]['woodwind'])/float(maxim['woodwind'])
+        else:
+            print 0
+        if 'brass' in times[i]:
+            print times[i]['brass'], maxim['brass'], float(times[i]['brass'])/float(maxim['brass'])
+        else:
+            print 0
+    wait = float((1/float(tempo))*60.0)
+    time.sleep(wait)
+    print "...",wait
