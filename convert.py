@@ -1,15 +1,17 @@
 import music21
+import json
 
 s = music21.converter.parse('searle_mydayofcarnage.xml')
 
-t = {}
-
+struct = {}
 for part in s.parts:
     p = part.flat
     name = p.id
-    t[name] = []
+    struct[name] = []
     for n in p.getElementsByClass(music21.note.Note):
         print name, n.duration.quarterLength, n.offset
-        t[name].append([n.offset,n.duration.quarterLength])
+        struct[name].append([n.offset,n.duration.quarterLength])
 
-print t
+output = open('searle_mydayofcarnage.json', 'wb')
+json.dump(struct,output)
+output.close()
