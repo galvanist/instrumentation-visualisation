@@ -2,11 +2,13 @@ import music21
 
 s = music21.converter.parse('searle_mydayofcarnage.xml')
 
-def flatPrint(myList):
+def printNotes(myList):
     for thing in myList:
-        if isinstance(thing, list):
-            flatPrint(thing)
-        else:
+        try:
+            iterator = iter(thing)
+        except TypeError:
             print(thing)
+        else:
+            printNotes(thing)
 
-flatPrint(s.parts[1])
+printNotes(s.parts[1])
