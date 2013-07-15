@@ -7,7 +7,8 @@ def printNotes(myList):
         try:
             iterator = iter(thing)
         except TypeError:
-            print(thing)
+            if isinstance(thing, music21.note.Note):
+                print(thing)
         else:
             printNotes(thing)
 
