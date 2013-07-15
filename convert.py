@@ -2,14 +2,8 @@ import music21
 
 s = music21.converter.parse('searle_mydayofcarnage.xml')
 
-def printNotes(myList):
-    for thing in myList:
-        try:
-            iterator = iter(thing)
-        except TypeError:
-            if isinstance(thing, music21.note.Note):
-                print thing.duration
-        else:
-            printNotes(thing)
+p = s.parts[1].flat
 
-printNotes(s.parts[1])
+for thing in p:
+    if isinstance(thing, music21.note.Note):
+        print thing
