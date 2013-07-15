@@ -6,4 +6,4 @@ for part in s.parts:
     p = part.flat
     print p.id
     for n in p.getElementsByClass(music21.note.Note):
-        print n.duration, n.offset
+        print n.duration.quarterLength, n.offset
