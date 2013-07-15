@@ -2,8 +2,14 @@ import music21
 
 s = music21.converter.parse('searle_mydayofcarnage.xml')
 
+t = {}
+
 for part in s.parts:
     p = part.flat
-    print p.id
+    name = p.id
+    t[name] = []
     for n in p.getElementsByClass(music21.note.Note):
-        print n.duration.quarterLength, n.offset
+        print name, n.duration.quarterLength, n.offset
+        t[name].append([n.offset,n.duration.quarterLength])
+
+print t
