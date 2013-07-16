@@ -2,7 +2,7 @@ Creative Carnage
 ================
 Visualisation of musical instrumentation via Raspberry Pi from a Sibelius/MusicXML file via Python/Music21
 
-![Final](/photos/finalSmall.jpg)
+![Final](/photos/finalSmall.jpg) ![Instruments Laser Template](/laser/instrumentsSmall.png)
 
 Components
 ----------
@@ -12,8 +12,6 @@ Components
 - JSON
 - Raspberry Pi
 - RPi.GPIO/PWM
-
-![Instruments Laser Template](/laser/instrumentsSmall.png)
 
 ![Prototype](/photos/prototype.jpg)
 
