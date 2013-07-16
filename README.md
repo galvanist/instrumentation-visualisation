@@ -26,7 +26,7 @@ Process
 
 Hardware Setup
 --------------
-LEDs with standard series resistors on pins 7, 11, 15
+Red, Green, Blue LEDs with standard series resistors on Raspberry Pi pins 7, 11, 15
 
 ![Genesis](/photos/genesis.jpg)
 
