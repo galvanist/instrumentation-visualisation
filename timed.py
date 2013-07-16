@@ -24,21 +24,21 @@ times = {}
 maxim = {}
 
 for part in struct:
-    partCase = part
-    part = part.lower()
-    #i know this is wrong
+    #this may be wrong
     section = ''
     for key in conf['sections']:
-        if key in part:
+        if key in part.lower():
             section = conf['sections'][key]
     if (section == ''):
         section = 'generic'
-        print part
+        print part.lower()
+    #/wrong
     
+    #default
     if not section in maxim:
         maxim[section] = 0
     
-    for note in struct[partCase]:
+    for note in struct[part]:
         offset = int(note[0])
         duration = int(note[1])
         for i in xrange(0,duration):
