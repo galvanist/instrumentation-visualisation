@@ -2,7 +2,10 @@ Creative Carnage
 ================
 Visualisation of musical instrumentation via Raspberry Pi from a Sibelius/MusicXML file via Python/Music21
 
-Built with:
+![Final](/photos/final.jpg)
+
+Components
+----------
 - Python
 - MusicXML
 - Music21
@@ -10,33 +13,37 @@ Built with:
 - Raspberry Pi
 - RPi.GPIO/PWM
 
-Process:
+![Prototype](/photos/prototype.jpg)
+
+Process
 -------
 1. Export MusicXML from Sibelius via Dolet plugin
 2. convert.py with Python and Music21
 3. timed.py on Raspberry Pi with RPi.GPIO PWM
 4. Play performance audio as the LEDs perform (3 seconds after lights out)
 
-![Prototype](/photos/prototype.jpg)
-
-Hardware Setup:
+Hardware Setup
 --------------
 LEDs with standard series resistors on pins 7, 11, 15
 
-Thoughts:
+![Genesis](/photos/genesis.jpg)
+
+Thoughts
 --------
 1. Should parse MusicXML for tempo (but keep base units in JSON as quarter lengths for nicest resolution).
    How can we visualise the differences between music as written and as performed ("My Day of Carnage" tempo was marked as 80 but performance works out at 84).
 2. Could account for musical dynamics (need to parse more parts of the MusicXML with Music21).
    The code counts instruments and notes/rhythm within each beat and visualises this as LED intensity.
 
-Credits:
+Credits
 -------
 - Chris Glasgow @scottishmusic
 - Gavin Leake @galvanist
 - Gillian Easson @GillianEasson
 
-Thanks:
+![Cleaning](/photos/cleaning.jpg)
+
+Thanks
 ------
 - Flux Laser Studio @fluxlaserstudio
 - Oliver Searle of @scottishmusic
@@ -44,7 +51,7 @@ Thanks:
 - The Whisky Bond @WhiskyBond
 - Chris Scott @chrisdonia http://www.flickr.com/photos/chrisdonia/sets/72157634618539409/
 
-Detailed Process:
+Detailed Process
 ----------------
 1. Export MusicXML from Sibelius via Dolet plugin
 2. convert.py with Python and Music21
