@@ -2,7 +2,7 @@ Creative Carnage
 ================
 Visualisation of musical instrumentation via Raspberry Pi from a Sibelius/MusicXML file via Python/Music21
 
-![Final](/photos/final.jpg)
+![Final](/photos/finalSmall.jpg)
 
 Components
 ----------
@@ -21,6 +21,8 @@ Process
 2. convert.py with Python and Music21
 3. timed.py on Raspberry Pi with RPi.GPIO PWM
 4. Play performance audio as the LEDs perform (3 seconds after lights out)
+
+![Score](/photos/score.png)
 
 Hardware Setup
 --------------
