@@ -13,7 +13,7 @@ Components
 - Raspberry Pi
 - RPi.GPIO/PWM
 
-![Prototype](/photos/prototype.jpg)
+![Prototype](/photos/prototype.jpg) ![Instruments Laser Template](/laser/instrumentsSmall.png)
 
 Process
 -------
